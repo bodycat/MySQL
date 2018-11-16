@@ -1,0 +1,38 @@
+заходим в папку bin mysql
+c:\Program Files\MySQL\MySQL Server 5.7\bin
+затем 
+mysqldump -uAdmin -proot my_db > my_db-dump.sql
+uAdmin - u»м€ѕользовател€
+proot - pѕароль пользовател€
+my_db - название базы
+> - создание резервного файла базы данных
+my_db-dump.sql - название базы данных
+< - восстановление базы 
+
+чтобы указать папку дл€ резервной копии нужно в строке указать путь к папке после знака сравнени€ вместе с путЄм к резервной базе данных
+
+дл€ восстановлени€ базы данных можно использовать MyIsamChk
+заходим в папку bin mysql
+c:\Program Files\MySQL\MySQL Server 5.7\bin
+далее
+myisamchk -r -q new_table_myisam "c:\programdata\mysql\MySQL Server 5.7\Data\my_db2\new_table_myisam"
+
+-r -q быстрое восстановлени€
+исправление индексный файл без изменени€ файла данных
+в результате таблица будет исправлена, если не исправит, то запускаем с параметром -r
+где r - режим восстановлени€
+myisamchk -r new_table_myisam "c:\programdata\mysql\MySQL Server 5.7\Data\my_db2\new_table_myisam"
+из файла данных будут удалены некорректные и утер€нные записи и индексный файл будет создан заново
+
+добавим patch, чтобы не входить в папку bin посто€нно
+c:\Program Files\MySQL\MySQL Server 5.7\bin
+теперь myisam можно выполн€ть из любой папки
+
+ќстановите MySQL сервер.
+
+ѕервое, что необходимо сделать в таком случае, остановить MySQL сервер. —делайте это следующим способом:
+
+    перейдите в папку с mysqladmin.exe:
+    # cd C:\Program Files\MySQL\MySQL Server 5.7\bin
+    ќстановите MySQL сервер:
+    # mysqladmin Цuroot Цpqwerty shutdown
